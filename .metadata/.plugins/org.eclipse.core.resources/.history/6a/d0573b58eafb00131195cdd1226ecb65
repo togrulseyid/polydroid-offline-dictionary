@@ -1,0 +1,7 @@
+package com.togrul.polydroidofflinedictionary.settings;
+
+import android.widget.BaseAdapter;
+
+public class SimpleAdapter extends BaseAdapter {
+
+}

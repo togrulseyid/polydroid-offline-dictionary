@@ -1,0 +1,10 @@
+package com.togrul.polydroidofflinedictionary.settings;
+
+public class DatabaseModel {
+	private int id;
+	private int size;//
+	private int name; //
+	private int dbname;
+	private int download; //new SpinnerAdapter(activity).isDownloaded(Integer.valueOf(XMLfunctions.getValue(e, "id")))+ "")
+	private int isdownload; //
+}

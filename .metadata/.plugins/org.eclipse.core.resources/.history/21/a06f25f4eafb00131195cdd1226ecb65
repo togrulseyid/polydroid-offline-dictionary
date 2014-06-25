@@ -1,0 +1,23 @@
+package com.togrul.polydroidofflinedictionary.settings;
+
+import com.togrul.polydroidofflinedictionary.SpinnerAdapter;
+import com.togrul.polydroidofflinedictionary.download.XMLfunctions;
+
+public class DatabaseModel {
+	private int id;
+	private int size;
+	private int name;
+	private int dbname;
+	private int download;
+	private int isdownload;   //new SpinnerAdapter(activity).isDownloaded(id);
+}
+
+
+
+map.put("", XMLfunctions.getValue(e, "id"));
+map.put("", XMLfunctions.getValue(e, "size"));
+map.put("", XMLfunctions.getValue(e, "name"));
+map.put("", XMLfunctions.getValue(e, "dbname"));
+map.put("", Integer.valueOf(XMLfunctions.getValue(e, "id")))+ "");
+map.put("", isDownload+ "");
+mylist.add(map);

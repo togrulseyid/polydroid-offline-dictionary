@@ -1,0 +1,55 @@
+package com.togrul.polydroidofflinedictionary.settings;
+
+public class DatabaseModel {
+
+	private int id;
+	private int size;//
+	private int name; //
+	private int dbname;
+	private int download; //new SpinnerAdapter(activity).isDownloaded(Integer.valueOf(XMLfunctions.getValue(e, "id")))+ "")
+	private int isdownload; //
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public int getName() {
+		return name;
+	}
+	public void setName(int name) {
+		this.name = name;
+	}
+	public int getDbname() {
+		return dbname;
+	}
+	public void setDbname(int dbname) {
+		this.dbname = dbname;
+	}
+	public int getDownload() {
+		return download;
+	}
+	public void setDownload(int download) {
+		this.download = download;
+	}
+	public int getIsdownload() {
+		return isdownload;
+	}
+	public void setIsdownload(int isdownload) {
+		this.isdownload = isdownload;
+	}	
+	
+	@Override
+	public String toString() {
+		return "DatabaseModel [id=" + id + ", size=" + size + ", name=" + name
+				+ ", dbname=" + dbname + ", download=" + download
+				+ ", isdownload=" + isdownload + "]";
+	}
+}

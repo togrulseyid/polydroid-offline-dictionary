@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.togrul.polydroidofflinedictionary"
+    android:versionCode="1"
+    android:versionName="1" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" >
+    </uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Splash"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PolyDroidActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.togrul.polydroidofflinedictionary.POLYDROIDACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.togrul.polydroidofflinedictionary.settings"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".DatabaseHelper"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".word.WebViewTranslateOnTextView"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".word.WebViewTranslateOnToast"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.togrul.polydroidofflinedictionary.download.DownloadList"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.togrul.polydroidofflinedictionary.download.Download"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.togrul.polydroidofflinedictionary.settings.DownloadActivity" />
+        <activity android:name="com.togrul.polydroidofflinedictionary.settings.WindowsActivity" />
+        <activity android:name="com.togrul.polydroidofflinedictionary.settings.AboutUsActivity" />
+        <activity android:name="com.togrul.polydroidofflinedictionary.settings.ThemeActivity" />
+        <activity
+            android:name="com.togrul.polydroidofflinedictionary.settings.SettingsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light" >
+        </activity>
+        <activity android:name="com.togrul.polydroidofflinedictionary.download.NoInternetConnection" />
+    </application>
+
+</manifest>
