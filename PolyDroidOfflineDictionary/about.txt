@@ -1,0 +1,9 @@
+Bismilleh!
+
+Polydroid Offline Dictionary;
+
+languages:
+{English-Azeri}
+{Azeri-English}
+{Azeri-Arabic}
+{Arabic-Azeri}
