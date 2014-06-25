@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/connection_error"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/image_verkkovirhe"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="false"
+        android:fitsSystemWindows="true"
+        android:src="@drawable/exit"
+        android:visibility="visible" >
+    </ImageView>
+    <!--verkkovirhe-->
+
+</RelativeLayout>

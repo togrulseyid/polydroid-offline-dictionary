@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="language">
+        <item>Azəri - English</item>
+        <item>English - Azəri</item>
+        <item>Ərəb - Azəri</item>
+        <item>Azəri - Ərəb</item>
+    </array>
+</resources>
