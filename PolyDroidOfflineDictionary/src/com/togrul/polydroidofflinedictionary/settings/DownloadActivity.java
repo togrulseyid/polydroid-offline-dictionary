@@ -1,17 +1,37 @@
 package com.togrul.polydroidofflinedictionary.settings;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +43,30 @@ import android.widget.Toast;
 
 import com.togrul.polydroidofflinedictionary.R;
 import com.togrul.polydroidofflinedictionary.SpinnerAdapter;
-import com.togrul.polydroidofflinedictionary.download.Download;
+import com.togrul.polydroidofflinedictionary.download.LoadingDialog;
 import com.togrul.polydroidofflinedictionary.download.XMLfunctions;
 
 public class DownloadActivity extends Fragment{
-	private ListView lv;
-	private Intent i;
+	
+	private static final File sdcard = Environment.getExternalStorageDirectory();
+	private static final String dbPath = sdcard.getAbsolutePath() + File.separator+"PolyDroid" + File.separator;
+	private static final String dbfile = sdcard.getAbsolutePath()+ File.separator + "PolyDroid" + File.separator + "database.db";
+	private long total = 0, lenghtOfFile;
+	private ListView listView;
 	private Activity activity; 
-	private boolean isDownload = false;
-		
+	private DatabaseModel databaseModel ;
+	private ArrayList<DatabaseModel> databaseModels ;
+	private Document doc;
+	private NodeList nodes;
+	private SimpleAdapter adapter;
+	private TextView textViewIsDownloaded;
+	
+	
+	public static Fragment instance() {
+		DownloadActivity downloadActivity = new DownloadActivity();		
+		return downloadActivity;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
 		View view = getActivity().getLayoutInflater().inflate(R.layout.listplaceholder, null);
@@ -41,121 +76,238 @@ public class DownloadActivity extends Fragment{
 		    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		    StrictMode.setThreadPolicy(policy);
 		}
+	 	
+		listView = (ListView) view.findViewById(R.id.listViewDatabaseList);
+	 	databaseModels = new ArrayList<DatabaseModel>();
+		adapter = new SimpleAdapter(activity, databaseModels);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new PDOnClickListener());
 		
+		new DownloadList().execute();
+		
+		return view;
+	}	
 
-	 	ArrayList<DatabaseModel> databaseModels = new ArrayList<DatabaseModel>();
+	private class PDOnClickListener implements OnItemClickListener {
 
-		String xml = XMLfunctions.getXML();
-		Document doc = XMLfunctions.XMLfromString(xml);
+		@Override
+		public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+			
+			textViewIsDownloaded = (TextView) view.findViewById(R.id.is_item_downloaded_title);
+			databaseModel = (DatabaseModel) listView.getItemAtPosition(position);
+			if (databaseModel.getIsDownload()) {
+				textViewIsDownloaded.setText("Downloaded");
+				textViewIsDownloaded.setTextColor(Color.GREEN);
+			} else {
+				textViewIsDownloaded.setText("Download");
+				textViewIsDownloaded.setTextColor(Color.RED);
+			}
 
-		int numResults = XMLfunctions.numResults(doc);
+			DownloadActivity.this.lenghtOfFile  = Integer.valueOf(databaseModel.getSize());		
+			if(databaseModel.getIsDownload()) {
+				
+				 new AlertDialog.Builder(activity)
+			        .setIcon(android.R.drawable.ic_dialog_alert)
+			        .setTitle(R.string.confirm_dialog_delete_title)
+			        .setMessage(R.string.confirm_dialog_delete_body)
+			        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
-		if ((numResults <= 0)) {
-			 Toast.makeText(activity, "No Internet Conection! Please try again later", Toast.LENGTH_LONG).show();
-		}
+			            @Override
+			            public void onClick(DialogInterface dialog, int which) {
+//			            	TODO: start Delete							
+							File file = new File(dbPath+databaseModel.getDbName());
+							boolean x = file.delete();
+							if(x){
+								deleteSpinnerItem(databaseModel.getId());
+								databaseModel.setIsDownload(false);
+								adapter.notifyDataSetChanged();
+							}
+			            }
 
-		NodeList nodes = doc.getElementsByTagName("database");
-
-		for (int i = 0; i < nodes.getLength(); i++) {
-			DatabaseModel map = new DatabaseModel();
-
-			Element e = (Element) nodes.item(i);
-
-			if(new SpinnerAdapter(activity).isDownloaded(Integer.valueOf(XMLfunctions.getValue(e, "id")))==1){
-				isDownload = true;
+			        })
+			        .setNegativeButton(R.string.no, null)
+			        .show();
+				 
 			}else{
-				isDownload = false;
+//				TODO: start download 
+				new DownloadFileAsync(getActivity(), databaseModel.getDbName(), databaseModel.getId()).execute("http://polydroid.info/polydroid/encrypted/"+ databaseModel.getDbName());
+			}
+		}
+	}
+
+	
+	
+	private class DownloadList extends AsyncTask<Void, String, Void> {
+
+		private LoadingDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			if (dialog == null) {
+				dialog = new LoadingDialog(LoadingDialog.LOADING_DIALOG_STYLE_INDETERMINATE);
+				dialog.show(getFragmentManager(), "");
+			}
+		}
+		@Override
+		protected void onProgressUpdate(String... values) {
+			super.onProgressUpdate(values);
+			
+			dialog.setProgressTitle("Downloading...");
+		}
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			publishProgress("Downloading");
+			String xml = getXML();
+			doc = XMLfunctions.XMLfromString(xml);
+
+			int numResults = XMLfunctions.numResults(doc);
+
+			if ((numResults <= 0)) {
+				 Toast.makeText(activity, "No Internet Conection! Please try again later", Toast.LENGTH_LONG).show();
+			}
+			nodes = doc.getElementsByTagName("database");
+
+			for (int i = 0; i < nodes.getLength(); i++) {
+				
+				DatabaseModel model = new DatabaseModel();
+				Element e = (Element) nodes.item(i);
+				model.setId(XMLfunctions.getValue(e, "id"));
+				model.setSize(XMLfunctions.getValue(e, "size"));
+				model.setName(XMLfunctions.getValue(e, "name"));
+				model.setDbname(XMLfunctions.getValue(e, "dbname"));
+				model.setIsDownload(new SpinnerAdapter(activity).isDownloaded(XMLfunctions.getValue(e, "id")));
+				databaseModels.add(model);
+				
 			}
 			
-			map.setId(XMLfunctions.getValue(e, "id"));
-			map.setSize(XMLfunctions.getValue(e, "size"));
-			map.setName(XMLfunctions.getValue(e, "name"));
-			map.setDbname(XMLfunctions.getValue(e, "dbname"));
-			map.setDownload(new SpinnerAdapter(activity).isDownloaded(Integer.valueOf(XMLfunctions.getValue(e, "id")))+ "");
-			map.setIsdownload(isDownload);
-			databaseModels.add(map);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (dialog != null) {
+				dialog.dismiss();
+			}
+			adapter.notifyDataSetChanged();
 		}
 		
-//		SimpleAdapter adapter = new SimpleAdapter(activity, mylist, R.layout.download_listview,
-//				new String[] { "name", "size","isdownload" }, new int[] { R.id.item_title, R.id.item_subtitle,R.id.is_item_downloaded_title });
-		SimpleAdapter adapter = new SimpleAdapter(activity, databaseModels);
+		public String getXML(){
+			String line = null ;			
+			try {
+				DefaultHttpClient httpClient = new DefaultHttpClient();
+				HttpPost httpPost = new HttpPost("http://polydroid.info/polydroid/database.xml");
+				HttpResponse httpResponse = httpClient.execute(httpPost);
+				HttpEntity httpEntity = httpResponse.getEntity();
+				line = EntityUtils.toString(httpEntity,"UTF-8");
 
-		lv = (ListView) view.findViewById(R.id.listViewDatabaseList);
-		lv.setTextFilterEnabled(true);
-		lv.setAdapter(adapter);
-
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				TextView txt = (TextView) view.findViewById(R.id.is_item_downloaded_title);
-				DatabaseModel o = (DatabaseModel) lv.getItemAtPosition(position);
-				if (Integer.valueOf(o.getDownload()) == 1) {
-					txt.setText("Downloaded");
-					txt.setTextColor(Color.GREEN);
-					i = new Intent(activity, Download.class);
-					i.putExtra("id", o.getId());
-					i.putExtra("size", o.getSize());
-					i.putExtra("name", o.getName());
-					i.putExtra("dbname", o.getDbname());
-					i.putExtra("isDownload", o.getDownload());
-					startActivity(i);
-				} else {
-					txt.setText("Download");
-					txt.setTextColor(Color.RED);
-					i = new Intent(activity, Download.class);
-					i.putExtra("id", o.getId());
-					i.putExtra("size", o.getSize());
-					i.putExtra("name", o.getName());
-					i.putExtra("dbname", o.getDbname());
-					i.putExtra("isDownload", o.getDownload());
-					startActivity(i);
-				}
+			} catch (UnsupportedEncodingException e) {
+				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+			} catch (MalformedURLException e) {
+				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+			} catch (IOException e) {
+				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
 			}
-		});
-		adapter.notifyDataSetChanged();
-		
-	 	
-		return view;
+
+			return line;
+		}
+
 	}
-		
+	
+	
+	private class DownloadFileAsync extends AsyncTask<String, Integer, Void> {
 
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		// Handle the back button
-//		if (keyCode == KeyEvent.KEYCODE_BACK) {
-//			// Ask the user if they want to quit
-//			new AlertDialog.Builder(activity)
-//					.setIcon(android.R.drawable.ic_dialog_alert)
-//					.setTitle(R.string.d_quit)
-//					.setMessage(R.string.d_really_quit)
-//					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-//								public void onClick(DialogInterface dialog, int which) {
-//									System.exit(-1);
-//									activity.finish();
-//								}
-//							})
-//					.setNegativeButton(R.string.d_no, new DialogInterface.OnClickListener() {
-//						public void onClick(DialogInterface dialog, int which) {
-//							launchIntent();
-//							activity.finish();
-//						}
-//					}).show();
-//			return true;
-//		} else {
-//			return super.onKeyDown(keyCode, event);
-//		}
-//	}
+		private LoadingDialog dialog;
+		private Activity activity;
+		private String dbName;
+		private String id;
 
+		public DownloadFileAsync(Activity activity, String dbName, String id) {
+			this.activity = activity;
+			this.dbName = dbName;
+			this.id = id;
+		}
 
-	public static Fragment instance() {
-		DownloadActivity downloadActivity = new DownloadActivity();		
-		return downloadActivity;
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			if (dialog == null) {
+				dialog = new LoadingDialog(LoadingDialog.LOADING_DIALOG_STYLE_DETERMINATE);
+				dialog.show(getFragmentManager(), "");
+			}
+
+		}
+
+		@Override
+		protected Void doInBackground(String... urls) {
+
+			int count;
+			try {
+				URL url = new URL(urls[0]);
+				URLConnection conexion = url.openConnection();
+				conexion.connect();
+
+				InputStream input = new BufferedInputStream(url.openStream());
+				OutputStream output = new FileOutputStream(dbPath + dbName);
+
+				byte data[] = new byte[1024];
+
+				while ((count = input.read(data)) != -1) {
+					
+					total += count;
+					output.write(data, 0, count);
+					
+					if (total != lenghtOfFile) {
+//						Log.d("testP","progress: " + (int) ((total * 100) / lenghtOfFile));
+						Log.d("testP","total: " + total + "\n lenghtOfFile: " + lenghtOfFile);
+						publishProgress((int) ((total * 100) / lenghtOfFile));
+					}
+					
+				}
+				
+				output.flush();
+				output.close();
+				input.close();
+				databaseModel.setIsDownload(true);
+				
+			} catch (Exception e) {
+			} finally {
+				total = 0;
+				SpinnerAdapter sAdapter = new SpinnerAdapter(activity);
+				sAdapter.addSpinnerItem(id, dbName, databaseModel.getName());
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			dialog.setProgress(values[0]);
+
+			dialog.setProgressTitle(values[0] + "%");
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			if (dialog != null) {
+				dialog.dismiss();
+			}
+			adapter.notifyDataSetChanged();
+		}
 	}
 
-	
-	
-//	private class ListDownloadAsynTask extends AsyncTask<Params, Progress, Result>{
-//		
-//	}
-	
-
+	public void deleteSpinnerItem(String id) {
+		SQLiteDatabase spinnerDB = android.database.sqlite.SQLiteDatabase
+				.openOrCreateDatabase(dbfile, null);
+		spinnerDB.delete("database", " id=" + id, null);
+		spinnerDB.close();
+	}
 }
