@@ -2,13 +2,24 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.logging.Handler"/>
 <fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.settings.DownloadActivity"/>
-<fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.widget.Adapter"/>
-<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.R.id"/>
-<fullyQualifiedTypeName name="android.webkit.WebView.FindListener"/>
-<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.R"/>
 <fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.settings.SimpleAdapter"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="android.R"/>
+<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.R"/>
+<fullyQualifiedTypeName name="android.support.v7.app.ActionBarActivity"/>
+<fullyQualifiedTypeName name="android.app.DialogFragment"/>
+<fullyQualifiedTypeName name="android.app.Fragment"/>
+<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.settings.DownloadActivity.PDOnClickListener"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask"/>
+<fullyQualifiedTypeName name="android.webkit.WebView.FindListener"/>
+<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.settings.DownloadActivity.ListDownloadAsynTask"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemLongClickListener"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.togrul.polydroidofflinedictionary.R.id"/>
+<fullyQualifiedTypeName name="android.widget.ProgressBar"/>
+<fullyQualifiedTypeName name="android.support.v4.app.DialogFragment"/>
 </qualifiedTypeNameHistroy>

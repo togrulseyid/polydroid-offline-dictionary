@@ -4,7 +4,7 @@
 		<item value="289" key="DIALOG_WIDTH"/>
 		<item value="103" key="DIALOG_Y_ORIGIN"/>
 		<item value="539" key="DIALOG_X_ORIGIN"/>
-		<item value="432" key="DIALOG_HEIGHT"/>
+		<item value="488" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="ListDownloadAsynTask" key="selection"/>
 		<list key="findhistory">
+			<item value="ListDownloadAsynTask"/>
+			<item value="lv"/>
+			<item value="DIALOG_DOWNLOAD_PROGRESS"/>
 			<item value="getR"/>
 			<item value="getRe"/>
 			<item value="spinner"/>
 			<item value="finish"/>
 			<item value="HashMap&lt;String, String&gt;"/>
-			<item value="int"/>
-			<item value="mylist"/>
-			<item value="//.setText(&quot;Tab 1&quot;)"/>
 		</list>
 		<list key="replacehistory">
 			<item value="DatabaseModel"/>
