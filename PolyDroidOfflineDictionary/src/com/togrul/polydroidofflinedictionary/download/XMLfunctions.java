@@ -2,18 +2,11 @@ package com.togrul.polydroidofflinedictionary.download;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,13 +32,13 @@ public class XMLfunctions {
 	        doc = db.parse(is); 
 	        
 		} catch (ParserConfigurationException e) {
-			////System.out.println("XML parse error: " + e.getMessage());
+			//System.out.println("XML parse error: " + e.getMessage());
 			return null;
 		} catch (SAXException e) {
-			////System.out.println("Wrong XML file structure: " + e.getMessage());
+			//System.out.println("Wrong XML file structure: " + e.getMessage());
             return null;
 		} catch (IOException e) {
-			////System.out.println("I/O exeption: " + e.getMessage());
+			//System.out.println("I/O exeption: " + e.getMessage());
 			return null;
 		}
 		       
@@ -70,33 +63,6 @@ public class XMLfunctions {
 	     }
 	     return "";
 	 }
-	
-		
-	 public  static HttpEntity entity;
-
-	public static String getXML(){	 
-
-		 
-			String line = null ;			
-			try {
-				DefaultHttpClient httpClient = new DefaultHttpClient();
-				HttpPost httpPost = new HttpPost("http://polydroid.info/polydroid/database.xml");
-				HttpResponse httpResponse = httpClient.execute(httpPost);
-				HttpEntity httpEntity = httpResponse.getEntity();
-				line = EntityUtils.toString(httpEntity,"UTF-8");
-	
-			} catch (UnsupportedEncodingException e) {
-				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
-			} catch (MalformedURLException e) {
-				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
-			} catch (IOException e) {
-				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
-			}
-
-			return line;
-
-	}
-	 
 
 	public static int numResults(Document doc){		
 		Node results = doc.getDocumentElement();
