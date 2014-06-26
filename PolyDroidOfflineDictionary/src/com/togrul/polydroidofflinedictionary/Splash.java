@@ -21,7 +21,7 @@ public class Splash extends Activity{
 	@Override
 	protected void onCreate(Bundle TravisLoveBacon) {
 		super.onCreate(TravisLoveBacon);
-		setContentView(R.layout.splash);
+		setContentView(R.layout.activity_splash);
 		
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		

@@ -49,6 +49,10 @@
     <string name="message_loading">Loading...</string>
     <string name="confirm_dialog_delete_title">Delete?</string>
     <string name="confirm_dialog_delete_body">Are you sure to delete database?</string>
+    <string name="fragment_settings_tab_database_list_niconn">No internet Connection!</string>
+    
+    
+
     <string name="license">        Copyright [2013] [Polydroid Offline Dictionary]
 
    Licensed under the Apache License, Version 2.0 (the "License");

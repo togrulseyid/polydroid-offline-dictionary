@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.togrul.polydroidofflinedictionary.R;
+import com.togrul.polydroidofflinedictionary.models.DatabaseModel;
 
 public class SimpleAdapter extends BaseAdapter {
 	
@@ -44,7 +45,7 @@ public class SimpleAdapter extends BaseAdapter {
 		View view = convertView;
 		if (convertView == null) {
 			view = activity.getLayoutInflater().inflate(
-					R.layout.download_listview, viewGroup, false);
+					R.layout.fragment_settings_tab_database_list_items, viewGroup, false);
 			viewHolder = new ViewHolder();
 
 			viewHolder.name = (TextView) view.findViewById(R.id.item_title);

@@ -31,7 +31,7 @@ public class ThemeActivity extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = getActivity().getLayoutInflater().inflate(R.layout.themeactivity, null);
+		View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_settings_tab_preference, null);
 		activity = getActivity();
 		textSize = (TextView) view.findViewById(R.id.size);
 		RGB = (TextView) view.findViewById(R.id.RGB);

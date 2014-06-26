@@ -39,12 +39,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.togrul.polydroidofflinedictionary.R;
 import com.togrul.polydroidofflinedictionary.SpinnerAdapter;
 import com.togrul.polydroidofflinedictionary.download.LoadingDialog;
 import com.togrul.polydroidofflinedictionary.download.XMLfunctions;
+import com.togrul.polydroidofflinedictionary.models.DatabaseModel;
 
 public class DownloadActivity extends Fragment{
 	
@@ -53,6 +53,7 @@ public class DownloadActivity extends Fragment{
 	private static final String dbfile = sdcard.getAbsolutePath()+ File.separator + "PolyDroid" + File.separator + "database.db";
 	private long total = 0, lenghtOfFile;
 	private ListView listView;
+	private TextView textViewNoInternetConnection;
 	private Activity activity; 
 	private DatabaseModel databaseModel ;
 	private ArrayList<DatabaseModel> databaseModels ;
@@ -69,7 +70,7 @@ public class DownloadActivity extends Fragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
-		View view = getActivity().getLayoutInflater().inflate(R.layout.listplaceholder, null);
+		View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_settings_tab_database_list, null);
 		activity = getActivity();
 
 	 	if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -78,6 +79,7 @@ public class DownloadActivity extends Fragment{
 		}
 	 	
 		listView = (ListView) view.findViewById(R.id.listViewDatabaseList);
+		textViewNoInternetConnection= (TextView) view.findViewById(R.id.textViewFragmentSettingsNoInternetConnection);
 	 	databaseModels = new ArrayList<DatabaseModel>();
 		adapter = new SimpleAdapter(activity, databaseModels);
 		listView.setAdapter(adapter);
@@ -137,7 +139,7 @@ public class DownloadActivity extends Fragment{
 
 	
 	
-	private class DownloadList extends AsyncTask<Void, String, Void> {
+	private class DownloadList extends AsyncTask<Void, String, Integer> {
 
 		private LoadingDialog dialog;
 
@@ -158,16 +160,13 @@ public class DownloadActivity extends Fragment{
 		}
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Integer doInBackground(Void... params) {
 			publishProgress("Downloading");
 			String xml = getXML();
 			doc = XMLfunctions.XMLfromString(xml);
 
 			int numResults = XMLfunctions.numResults(doc);
 
-			if ((numResults <= 0)) {
-				 Toast.makeText(activity, "No Internet Conection! Please try again later", Toast.LENGTH_LONG).show();
-			}
 			nodes = doc.getElementsByTagName("database");
 
 			for (int i = 0; i < nodes.getLength(); i++) {
@@ -183,12 +182,18 @@ public class DownloadActivity extends Fragment{
 				
 			}
 			
-			return null;
+			return numResults;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
+			
+
+			if ((result <= 0)) { // no internet connection
+				textViewNoInternetConnection.setVisibility(View.VISIBLE);
+			}
+			
 
 			if (dialog != null) {
 				dialog.dismiss();

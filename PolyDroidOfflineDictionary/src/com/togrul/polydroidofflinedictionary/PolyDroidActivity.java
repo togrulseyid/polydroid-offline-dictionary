@@ -16,14 +16,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.AbsListView;
@@ -52,29 +49,28 @@ import com.togrul.polydroidofflinedictionary.word.WebViewTranslateOnTextView;
 
 public class PolyDroidActivity extends ActionBarActivity implements Observer {
 	
-	private static String database;
-	private static String spinnerText;
-
-	private static Dialog dialog;
-	private static ListView listContent;
-	private static Spinner spinner;
-	private static EditText editText;
-	private static ImageButton SearchButton;
-	private static Button button1;
-	private static Button button2;
-	private static Button button3;
-	private static Button button4;
-	private static Button button5;
-	private static Button button6;
-	private static Button button7;
-
+	private String database;
+	private String spinnerText;
+	private Dialog dialog;
+	private ListView listContent;
+	private Spinner spinner;
+	private EditText editText;
+	private ImageButton SearchButton;
+	private Button button1;
+	private Button button2;
+	private Button button3;
+	private Button button4;
+	private Button button5;
+	private Button button6;
+	private Button button7;
 	private SpinnerAdapter spinnerAdapter;
-	private static SimpleCursorAdapter cursorAdapter;
-	private static DataBaseHelper databaseHelper;
-	private static Typeface EditTextface;
-	private static Typeface face;
-	private static String sizeOfText = "font-size:18px;";
-	private static String RGB;
+	private SimpleCursorAdapter cursorAdapter;
+	private DataBaseHelper databaseHelper;
+	private Typeface EditTextface;
+	private Typeface face;
+	private String sizeOfText = "font-size:18px;";
+	private String RGB;
+	private Intent i;
 
 	/*
 	 * onCreate method it start first and main operations are here
@@ -372,18 +368,24 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer {
 			finish();
 			return false;
 
-		case R.id.info:
-			LayoutInflater inflater = getLayoutInflater();
-			View view = inflater.inflate(R.layout.info,	(ViewGroup) findViewById(R.id.relativeLayout1));
-			Toast toast = new Toast(this);
-			toast.setView(view);
-			toast.setGravity(Gravity.LEFT, 0, 0);
-			toast.setDuration(Toast.LENGTH_LONG);
-			toast.show();
+//		case R.id.info:
+//			LayoutInflater inflater = getLayoutInflater();
+//			View view = inflater.inflate(R.layout.info,	(ViewGroup) findViewById(R.id.relativeLayout1));
+//			Toast toast = new Toast(this);
+//			toast.setView(view);
+//			toast.setGravity(Gravity.LEFT, 0, 0);
+//			toast.setDuration(Toast.LENGTH_LONG);
+//			toast.show();
+//			return true;
+			
+		case R.id.menu_item_info:
+			i = new Intent(getApplicationContext(), com.togrul.polydroidofflinedictionary.settings.SettingsActivity.class);
+			i.putExtra("FirstTab", 2);
+			startActivity(i);
 			return true;
 
-		case R.id.settings:
-			Intent i = new Intent(getApplicationContext(),
+		case R.id.menu_item_settings:
+			i = new Intent(getApplicationContext(),
 					com.togrul.polydroidofflinedictionary.settings.SettingsActivity.class);
 			startActivity(i);
 			return true;

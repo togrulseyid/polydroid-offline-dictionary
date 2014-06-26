@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.togrul.polydroidofflinedictionary.R;
@@ -24,7 +25,7 @@ public class SettingsActivity extends ActionBarActivity implements ActionBar.Tab
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		setContentView(R.layout.settings);
+		setContentView(R.layout.activity_settings);
 		
 		actionBar = getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -44,8 +45,12 @@ public class SettingsActivity extends ActionBarActivity implements ActionBar.Tab
 		
 		Intent i = getIntent();
 		int tabToOpen = i.getIntExtra("FirstTab", -1);
-		if (tabToOpen!=-1) {
+		if (tabToOpen == 4) {
 			getSupportActionBar().selectTab(tab2);
+			Log.d("testA","tab2");
+		} else if(tabToOpen == 2) {
+			getSupportActionBar().selectTab(tab3);
+			Log.d("testA","tab3");
 		}
 	}
 	
