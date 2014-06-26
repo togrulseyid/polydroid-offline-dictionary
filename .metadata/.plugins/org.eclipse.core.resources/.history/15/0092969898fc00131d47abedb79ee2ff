@@ -1,0 +1,5 @@
+package com.togrul.polydroidofflinedictionary.download;
+
+public class LoadingDialog {
+
+}

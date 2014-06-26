@@ -1,0 +1,52 @@
+package com.togrul.polydroidofflinedictionary.download;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ProgressBar;
+
+import com.togrul.polydroidofflinedictionary.R;
+
+public class LoadingDialog extends DialogFragment {
+
+	int style = 0;
+	ProgressBar progressBar;
+	ProgressBar progressBarIndeterminate;
+	
+	public void setDialogStyle(int style) {
+		this.style = style;
+	}
+
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+		setStyle(STYLE_NO_TITLE, getTheme());
+
+		LayoutInflater inflater = getActivity().getLayoutInflater();
+		View dialoglayout = inflater.inflate(R.layout.dialog_loading, null);
+		progressBar = (ProgressBar) dialoglayout.findViewById(R.id.progressBarDialogProgress);
+		progressBarIndeterminate = (ProgressBar) dialoglayout.findViewById(R.id.progressBarDialogIndeterminateProgress);
+
+		if(style == 1)
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setView(dialoglayout);
+		builder.setCancelable(false);
+		setCancelable(false);
+
+		return builder.create();
+
+	}
+
+	public void setProgress(int progress) {
+		progressBar.setProgress(progress);
+	}
+	
+	public void setProgressTitle(String title) {
+		progressBarTitle.setText(title);
+	}
+
+}
