@@ -62,13 +62,13 @@ public class SimpleAdapter extends BaseAdapter {
 		viewHolder.name.setText(model.getName());
 		viewHolder.size.setText(model.getSize());
 		
-		if(model.getIsdownload()) {
+		if(model.getIsDownload()) {
 			viewHolder.isdownload.setText("Downloaded");
 		} else {
 			viewHolder.isdownload.setText("Download");			
 		}
 		 
-		if (model.getDownload().equals("1")) {
+		if (model.getIsDownload()) {
 			viewHolder.isdownload.setText("Downloaded");
 			viewHolder.isdownload.setTextColor(Color.GREEN);
 		} else {
