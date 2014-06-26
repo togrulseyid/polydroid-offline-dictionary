@@ -130,17 +130,20 @@ public class SpinnerAdapter {
 		return count;
 	}
 
-	public int isDownloaded(int id) throws SQLException {
-
-		int downloaded = 0;
+	public boolean isDownloaded(String id) throws SQLException {
+		
+		boolean downloaded = false;
 		spinnerDB = android.database.sqlite.SQLiteDatabase.openOrCreateDatabase(dbfile, null);
 		Cursor c = spinnerDB.rawQuery("SELECT count(id) FROM database WHERE id=" + id, null);
 		c.moveToFirst();
 		int count = c.getInt(0);
-		if (count == 1)
-			downloaded = 1;
+		
+		if (count == 1) {
+			downloaded = true;
+		}
 		c.close();
 		spinnerDB.close();
+		
 		return downloaded;
 	}
 
