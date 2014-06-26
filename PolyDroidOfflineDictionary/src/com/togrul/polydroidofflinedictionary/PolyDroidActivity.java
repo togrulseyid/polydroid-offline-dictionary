@@ -246,7 +246,7 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer {
 		databaseHelper = new DataBaseHelper(getApplicationContext(),database);
 		searchAlgorithm(spinnerString(spinner));
 		databaseHelper.close();
-		spinnerAdapter.close(); // // //
+		spinnerAdapter.close();
 	}
 
 	/*
