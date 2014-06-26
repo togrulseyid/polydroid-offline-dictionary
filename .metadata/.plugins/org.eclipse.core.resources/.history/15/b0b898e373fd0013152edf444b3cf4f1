@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pd="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/exit"
+        android:orderInCategory="100"
+        android:title="Exit"
+        pd:icon="@drawable/exit"
+        pd:showAsAction="never"/>
+    <!--
+    <item
+        android:id="@+id/info"
+        android:background="@color/Blue"
+        android:icon="@drawable/ico_info"
+        android:title="Info"/>
+    -->
+    <item
+        android:id="@+id/settings"
+        android:icon="@+drawable/ico_settings"
+        android:orderInCategory="100"
+        android:title="Settings"
+        pd:showAsAction="never"/>
+
+</menu>
