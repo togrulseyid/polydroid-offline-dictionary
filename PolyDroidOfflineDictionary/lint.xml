@@ -4,4 +4,7 @@
         <ignore path="src/com/togrul/polydroidofflinedictionary/settings/DownloadActivity.java" />
         <ignore path="src/com/togrul/polydroidofflinedictionary/settings/SettingsActivity.java" />
     </issue>
+    <issue id="ValidFragment">
+        <ignore path="src/com/togrul/polydroidofflinedictionary/download/LoadingDialog.java" />
+    </issue>
 </lint>
