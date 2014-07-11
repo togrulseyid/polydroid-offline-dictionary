@@ -38,8 +38,7 @@
         <RadioGroup
             android:id="@+id/radioGroup1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content" >
 
             <RadioButton
                 android:id="@+id/radio0"
@@ -58,7 +57,8 @@
                 android:id="@+id/radio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/half" />
+                android:text="@string/half"
+                android:visibility="gone" />
         </RadioGroup>
 
         <TextView

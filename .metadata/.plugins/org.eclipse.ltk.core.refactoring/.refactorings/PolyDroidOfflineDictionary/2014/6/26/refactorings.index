@@ -18,3 +18,13 @@
 1403817591854	Rename resource 'themeactivity.xml'
 1403817638436	Delete element
 1403818563589	Rename resource 'aboutus.xml'
+1403986260371	Rename field 'context'
+1403990646934	Delete element
+1403990665058	Rename package 'com.togrul.polydroidofflinedictionary.word'
+1403990680427	Rename package 'com.togrul.polydroidofflinedictionary.download'
+1403990700166	Rename package 'com.togrul.polydroidofflinedictionary.adapters'
+1403990707853	Rename package 'com.togrul.polydroidofflinedictionary.models'
+1403990714326	Rename package 'com.togrul.polydroidofflinedictionary.settings'
+1403990722081	Rename package 'com.togrul.polydroidofflinedictionary.operations'
+1403990733654	Rename package 'com.togrul.polydroidofflinedictionary.views'
+1403990747511	Rename package 'com.togrul.polydroidofflinedictionary'

@@ -25,8 +25,9 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Splash"
-            android:label="@string/app_name" >
+            android:name="com.togrul.pd.Splash"
+            android:label="@string/app_name"
+            android:theme="@style/CustomTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,9 +35,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PolyDroidActivity"
+            android:name="com.togrul.pd.PolyDroidActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat" >
+            android:theme="@style/CustomTheme" >
             <intent-filter>
                 <action android:name="com.togrul.polydroidofflinedictionary.POLYDROIDACTIVITY" />
 
@@ -44,38 +45,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".word.WebViewTranslateOnTextView"
+            android:name="com.togrul.pd.views.TranslationInTextView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat" >
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name=".word.WebViewTranslateOnToast"
+            android:name="com.togrul.pd.views.TranslationInToast"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat" >
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="com.togrul.polydroidofflinedictionary.settings.DownloadActivity"
-            android:theme="@style/Theme.AppCompat" >
+            android:name="com.togrul.pd.settings.DownloadActivity"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="com.togrul.polydroidofflinedictionary.settings.AboutUsActivity"
-            android:theme="@style/Theme.AppCompat" >
+            android:name="com.togrul.pd.settings.AboutUsActivity"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="com.togrul.polydroidofflinedictionary.settings.ThemeActivity"
-            android:theme="@style/Theme.AppCompat" >
+            android:name="com.togrul.pd.settings.ThemeActivity"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="com.togrul.polydroidofflinedictionary.settings.SettingsActivity"
+            android:name="com.togrul.pd.settings.SettingsActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat" >
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="com.togrul.polydroidofflinedictionary.download.NoInternetConnection"
-            android:theme="@style/Theme.AppCompat" >
+            android:name="com.togrul.pd.operations.NoInternetConnection"
+            android:theme="@style/CustomTheme" >
+        </activity>
+        <activity
+            android:name="com.togrul.pd.views.TranslationInTextViewArabicCorrector"
+            android:theme="@style/CustomTheme" >
         </activity>
     </application>
 

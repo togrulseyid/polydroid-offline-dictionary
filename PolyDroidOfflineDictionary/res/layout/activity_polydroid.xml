@@ -1,33 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/Black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/White"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:weightSum="10" >
 
         <Spinner
             android:id="@+id/languages"
+            style="@style/PolyDroid.Spinner.Style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="6"
             android:clipChildren="true"
             android:drawSelectorOnTop="true"
-            android:padding="5dp"
-            android:background="@drawable/spinner_selector"
             android:prompt="@string/prompt"
             android:scrollbarStyle="outsideOverlay"
             android:tag="@string/app_name" />
-        <!-- 
-            android:background="@color/Word" -->
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/White"
         android:gravity="center|center_vertical"
@@ -39,12 +39,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/Beige2"
+            android:drawableRight="@drawable/edittext_clear_selector"
             android:ems="10"
             android:inputType="textNoSuggestions"
-            android:textSize="32sp" >
-
-            <requestFocus />
-        </EditText>
+            android:textColor="@color/background_action_bar"
+            android:textSize="32sp" />
 
         <ImageButton
             android:id="@+id/searchbutton"

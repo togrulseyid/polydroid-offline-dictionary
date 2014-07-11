@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">PolyDroid Offline Dictionary</string>
@@ -19,7 +20,7 @@
     <string name="autosearch">Type to Search</string>
     <string name="contentDescription">What</string>
     <string name="info">My Name Is Togrul Seyidov I am From Azerbaijan my E-mail: togrul.seyid93@gmail.com</string>
-    <string name="aboutus">\nDeveloper: <u><b><i><a href="http://togrulseyid.com/">Toghrul Seyidov</a></i></b></u>\nE-mail: info@togrulseyid.com\nThis application developed by getting inspired from <a href="http://www.hackathonazerbaijan.org/">HackathonAzerbaijan</a>\n</string>
+    <string name="aboutus">\nDeveloper: <b><a href="http://togrulseyid.com/">Toghrul Seyidov</a></b>\nE-mail: info@togrulseyid.com\nThis application developed by getting inspired from <b><a href="http://www.hackathonazerbaijan.org/">HackathonAzerbaijan</a></b></string>
     <string name="prompt">PolyDroid (Select language)</string>
     <string name="herif1">ə</string>
     <string name="herif2">ç</string>
@@ -50,9 +51,8 @@
     <string name="confirm_dialog_delete_title">Delete?</string>
     <string name="confirm_dialog_delete_body">Are you sure to delete database?</string>
     <string name="fragment_settings_tab_database_list_niconn">No internet Connection!</string>
-    
-    
-
+    <string name="fragment_settings_tab_about_web_site">http://togrulseyid.com/about</string>
+    <string name="nothing_found_in_db">There is no such word in our Database</string>
     <string name="license">        Copyright [2013] [Polydroid Offline Dictionary]
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,5 +66,6 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

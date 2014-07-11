@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- pressed -->
-    <item android:drawable="@drawable/close_button_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/ic_exit_pressed" android:state_pressed="true"/>
     <!-- focused -->
-    <item android:drawable="@drawable/close_button_focused" android:state_focused="true"/>
+    <item android:drawable="@drawable/ic_exit_pressed" android:state_focused="true"/>
     <!-- default -->
-    <item android:drawable="@drawable/close_button"/>
+    <item android:drawable="@drawable/ic_exit"/>
 
 </selector>

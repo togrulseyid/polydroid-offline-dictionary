@@ -149,6 +149,11 @@
     <color name="TundBoz">#CCCC99</color>
     <color name="Word">#0099CC</color>
     <color name="polydroid">#bfbfbf</color>
-    <color name="background_action_bar">#42abed</color>
+    <!-- <color name="background_action_bar">#42abed</color> -->
+    <color name="background_action_bar">#008000</color>
+    <color name="background_action_bar_2">#419E55</color>
+    <color name="background_action_bar_tab">#bfbfba</color>
+    <color name="tab_unselected">#bfbfba</color>
+    <color name="tab_selected">#FFEBCD</color>
 
 </resources>

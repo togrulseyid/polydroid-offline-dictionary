@@ -4,29 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <WebView
-        android:id="@+id/WebView"
-        android:layout_width="match_parent"
-        android:layout_height="366dp"
-        android:layout_margin="5dp"
-        android:maxHeight="200dp"
-        android:minHeight="100dp"
-        android:onClick="onClick"
-        android:singleLine="false"
-        android:textColor="@color/Word"
-        android:textSize="30sp"
-        android:typeface="monospace" />
-
     <ImageButton
         android:id="@+id/exit"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:background="@drawable/toast_exit_button"
         android:contentDescription="@string/app_name"
-        android:longClickable="false"
-        android:minHeight="64dp"
-        android:minWidth="64dp"
-        android:onClick="@drawable/toast_exit_button" />
+        android:longClickable="false" />
+
+    <WebView
+        android:id="@+id/WebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:textColor="@color/Word"
+        android:textSize="30sp"
+        android:typeface="monospace" />
 
 </LinearLayout>

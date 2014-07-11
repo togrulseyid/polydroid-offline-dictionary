@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/BlanchedAlmond"
     android:gravity="center"
     android:orientation="vertical" >
+    
+    <!-- 
+    android:background="@color/BlanchedAlmond" -->
 
     <TextView
         android:id="@+id/PDName"
@@ -25,10 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/ic_launcher"
         android:contentDescription="@string/app_name"
-        android:gravity="center" />
-    <!-- android:src="@drawable/ic_launcher" -->
+        android:gravity="center"
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/aboutUsTextViewVersion"
@@ -53,20 +54,13 @@
         android:text="@string/aboutus"
         android:textColor="@android:color/black" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/textViewFragmentSettingsTabAboutUsMoreAboutMe"
+        style="@style/PolyDroid.TextView.Style"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/license"
-            android:textColor="@android:color/black"
-            android:typeface="monospace" >
-        </TextView>
-    </ScrollView>
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="More About me" />
 
 </LinearLayout>

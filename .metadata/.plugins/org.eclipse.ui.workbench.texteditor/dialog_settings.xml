@@ -3,31 +3,35 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="289" key="DIALOG_WIDTH"/>
 		<item value="103" key="DIALOG_Y_ORIGIN"/>
+		<item value="432" key="DIALOG_HEIGHT"/>
 		<item value="539" key="DIALOG_X_ORIGIN"/>
-		<item value="488" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="ListDownloadAsynTask" key="selection"/>
+		<item value="My" key="selection"/>
 		<list key="findhistory">
-			<item value="ListDownloadAsynTask"/>
-			<item value="lv"/>
-			<item value="DIALOG_DOWNLOAD_PROGRESS"/>
-			<item value="getR"/>
-			<item value="getRe"/>
-			<item value="spinner"/>
-			<item value="finish"/>
-			<item value="HashMap&lt;String, String&gt;"/>
+			<item value="My"/>
+			<item value="my"/>
+			<item value="myC"/>
+			<item value="on"/>
+			<item value="onSp"/>
+			<item value="TextView"/>
+			<item value="polydroid"/>
+			<item value="AppBaseTheme"/>
 		</list>
 		<list key="replacehistory">
+			<item value="CustomTheme"/>
+			<item value=""/>
+			<item value="AppBaseTheme"/>
+			<item value="Theme.AppCompat"/>
+			<item value="Quraşdırmalar"/>
 			<item value="DatabaseModel"/>
 			<item value="String"/>
-			<item value=""/>
 		</list>
 	</section>
 </section>
