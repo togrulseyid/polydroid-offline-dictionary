@@ -1,39 +1,41 @@
 package com.togrul.pd.views;
 
-import com.togrul.pd.DataBaseHelper;
-import com.togrul.polydroidofflinedictionary.R;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.togrul.pd.DataBaseHelper;
+import com.togrul.polydroidofflinedictionary.R;
+
 public class TranslationInToast extends Activity{
+	
 	private static View view ;
 	private static long id ;
 	private static String spinnerText ;
 	private static DataBaseHelper mySQLiteAdapter ;
-	//private static WebView webView ;
 	private static Dialog dialog;
+	private WebView webView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 		
 		dialog = new Dialog(TranslationInToast.this);
 		dialog.setContentView(R.layout.word);
 		dialog.setTitle("PolyDroid Offline Dictionary");
 		dialog.setCancelable(true);
 		
-		WebView webView = (WebView) dialog.findViewById(R.id.WebView);
+		webView = (WebView) dialog.findViewById(R.id.WebView);
 		try {
 			Cursor c = mySQLiteAdapter.query(((TextView) view).getText().toString(), spinnerText, id);
 			c.moveToFirst();
@@ -44,9 +46,18 @@ public class TranslationInToast extends Activity{
 				"<style type=\"text/css\"> body{ background-color: #F5F5DC; font-size:18px;}</style>" +
 				"</head>" + 
 				"<body>" +
-				s +
+				Html.fromHtml(s) +
 				"</body>" +
 				"</html>";
+
+			webView.setWebChromeClient(new WebChromeClient());
+			webView.setWebViewClient(new WebViewClient(){
+				public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+	        		//do something on error
+					webView.loadUrl("file:///android_asset/html/myerrorpage.html");
+	        	}
+			}); 
+		
 			webView.loadData(s, "text/html","UTF-8");
 		} catch (Exception e) {
 			Log.d("WebView", e.toString());
@@ -64,7 +75,6 @@ public class TranslationInToast extends Activity{
 		});
 		dialog.show();
 	}
-	
 	
 	public void getData(View v, long i,DataBaseHelper m, String s,Dialog d)
 	{

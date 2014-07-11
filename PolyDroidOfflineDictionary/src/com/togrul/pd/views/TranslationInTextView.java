@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.togrul.polydroidofflinedictionary.R;
 
@@ -45,9 +48,18 @@ public class TranslationInTextView extends ActionBarActivity {
 					+ sizeOfText
 					// + " font-family: 'myface', arial;"
 					+ " margin:30px 30px 0 30px;" + " }</style>" + "</head>"
-					+ " <body><center><font color='black'>" + from
-					+ "<hr size='2' color='black'></font></center>" + to
+					+ " <body><center><font color='black'>" + Html.fromHtml(from)
+					+ "<hr size='2' color='black'></font></center>" + Html.fromHtml(to)
 					+ "</body>" + "</html>";
+
+			webView.setWebChromeClient(new WebChromeClient());
+			webView.setWebViewClient(new WebViewClient(){
+				public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+	        		//do something on error
+					webView.loadUrl("file:///android_asset/html/myerrorpage.html");
+	        	}
+			}); 
+		
 			webView.loadData(to, "text/html; charset=utf-8", "utf-8");
 		} catch (Exception e) {
 			e.printStackTrace();

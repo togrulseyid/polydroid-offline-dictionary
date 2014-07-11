@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ClickableViewAccessibility">
+        <ignore path="src/com/togrul/pd/PolyDroidActivity.java" />
+    </issue>
+    <issue id="ContentDescription" severity="ignore" />
+    <issue id="HardcodedText" severity="ignore" />
+    <issue id="IconDipSize" severity="ignore" />
+    <issue id="IconDuplicatesConfig" severity="ignore" />
+    <issue id="InefficientWeight" severity="ignore" />
+    <issue id="InflateParams" severity="ignore" />
+    <issue id="MergeRootFrame" severity="ignore" />
+    <issue id="MissingTranslation" severity="warning">
+        <ignore path="res/values/strings.xml" />
+    </issue>
     <issue id="NewApi">
         <ignore path="src/com/togrul/pd/PolyDroidActivity.java" />
+        <ignore path="src/com/togrul/pd/settings/DownloadActivity.java" />
         <ignore path="src/com/togrul/polydroidofflinedictionary/settings/DownloadActivity.java" />
         <ignore path="src/com/togrul/polydroidofflinedictionary/settings/SettingsActivity.java" />
     </issue>
+    <issue id="OldTargetApi" severity="ignore" />
+    <issue id="Overdraw" severity="ignore" />
+    <issue id="TypographyEllipsis" severity="ignore" />
+    <issue id="UnusedAttribute" severity="ignore" />
+    <issue id="UnusedResources" severity="ignore" />
     <issue id="ValidFragment">
         <ignore path="src/com/togrul/polydroidofflinedictionary/download/LoadingDialog.java" />
     </issue>
+    <issue id="ViewHolder" severity="ignore" />
 </lint>

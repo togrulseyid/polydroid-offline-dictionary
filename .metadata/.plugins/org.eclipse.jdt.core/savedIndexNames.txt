@@ -1,9 +1,13 @@
-INDEX VERSION 1.126+/home/togrul/workspace/.metadata/.plugins/org.eclipse.jdt.core
-1270315800.index
-3951206841.index
-3509287144.index
-3610156920.index
-1394353842.index
-1323949459.index
-2076022464.index
-3273855435.index
+INDEX VERSION 1.126+F:\PolyDroidOfflineDictionary_v1.1\polydroid-offline-dictionary\.metadata\.plugins\org.eclipse.jdt.core
+3251472159.index
+1959075945.index
+530098394.index
+4181738824.index
+1318936689.index
+1469384444.index
+1834548837.index
+2465244231.index
+4010508791.index
+1284074322.index
+4127451002.index
+505554640.index

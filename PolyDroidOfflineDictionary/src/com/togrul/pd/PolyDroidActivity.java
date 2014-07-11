@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -31,7 +32,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -80,6 +83,7 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer,
 	private String RGB;
 	private Intent i;
 	private int screenHeight = 0;
+	private WebView webView;
 
 	/*
 	 * onCreate method it start first and main operations are here
@@ -339,8 +343,9 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer,
 	 * version 1.0 Pop Up WebView that shows translated word. This is first
 	 * method
 	 */
+	@SuppressWarnings("deprecation")
 	public void WebViewTranslateOnToast(View view, long id) {
-
+		
 		dialog = new Dialog(PolyDroidActivity.this);
 
 		Point size = new Point();
@@ -363,7 +368,7 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer,
 				screenHeight * 60 / 100);
 		dialog.setCancelable(true);
 
-		WebView webView = (WebView) dialog.findViewById(R.id.WebView);
+		webView = (WebView) dialog.findViewById(R.id.WebView);
 		try {
 			Cursor c = databaseHelper.query(((TextView) view).getText()
 					.toString(), spinnerText, id);
@@ -375,8 +380,7 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer,
 					+ "<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">"
 					+ "<title>Translate</title>"
 					+ " <style type=\"text/css\">"
-					// +
-					// " @font-face {  font-family: 'myface';  src: url('file:///android_asset/fonts//ARIAL.TTF');	} "
+					+ " @font-face {  font-family: 'myface';  src: url('file:///android_asset/fonts//ARIAL.TTF');	} "
 					+ " body{"
 					+ RGB
 					+ " background-color: #F5F5DC; "
@@ -384,9 +388,18 @@ public class PolyDroidActivity extends ActionBarActivity implements Observer,
 					+ " font-family: 'myface', arial;" // ola bilsin islemir
 					+ " margin:30px 30px 0 30px;" + " }</style>" + "</head>"
 					+ " <body><center><font color='black'>"
-					+ c.getString(c.getColumnIndex("_from"))
+					+ Html.fromHtml(c.getString(c.getColumnIndex("_from")))
 					+ "<hr size='2' color='black'></font></center>" + s
 					+ "</body>" + "</html>";
+			
+			webView.setWebChromeClient(new WebChromeClient());
+			webView.setWebViewClient(new WebViewClient(){
+				public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+	        		//do something on error
+					webView.loadUrl("file:///android_asset/html/myerrorpage.html");
+	        	}
+			}); 
+		
 			webView.loadData(s, "text/html; charset=utf-8", "utf-8");
 		} catch (Exception e) {
 		} finally {

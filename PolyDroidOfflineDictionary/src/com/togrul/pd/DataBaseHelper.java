@@ -7,8 +7,6 @@ import net.sqlcipher.database.SQLiteDatabase;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Environment;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * @author Togrul Seyidov

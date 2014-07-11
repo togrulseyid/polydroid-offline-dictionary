@@ -2,11 +2,13 @@ package com.togrul.pd.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.togrul.pd.views.arabic.ArabicUtilities;
 import com.togrul.polydroidofflinedictionary.R;
@@ -52,11 +54,21 @@ public class TranslationInTextViewArabicCorrector extends ActionBarActivity {
 					+ " </head>"
 					+ " <body>"
 					+ "<center>"
-					+ "<font color='black'>" + from + " <hr size='2' color='black'></font>"
+					+ "<font color='black'>" + Html.fromHtml(from) + " <hr size='2' color='black'></font>"
 					+ "</center>" 
-					+ 	to
+					+ Html.fromHtml(to)
 					+ " </body>" 
 					+ "</html>";
+			
+
+			webView.setWebChromeClient(new WebChromeClient());
+			webView.setWebViewClient(new WebViewClient(){
+				public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+	        		//do something on error
+					webView.loadUrl("file:///android_asset/html/myerrorpage.html");
+	        	}
+			}); 
+		
 			webView.loadData(ArabicUtilities.reshape(to), "text/html; charset=utf-8", "utf-8");
 		} catch (Exception e) {
 			e.printStackTrace();
