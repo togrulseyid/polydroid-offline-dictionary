@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="2" >
+
+    <ListView
+        android:id="@+id/contentlist"
+        
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:cacheColorHint="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:contentDescription="@string/app_name"
+        android:listSelector="@drawable/listbg" />
+
+    <WebView
+        android:id="@+id/WebView2"
+        android:layout_height="match_parent"
+        android:layout_weight="1.00"
+        android:onClick="onClick"
+        android:singleLine="false"
+        android:textColor="@color/Word"
+        android:textSize="30sp"
+        android:typeface="monospace" />
+
+</LinearLayout>

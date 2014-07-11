@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ContentDescription" severity="ignore">
+        <ignore path="res/layout/abc_action_bar_decor_overlay.xml" />
+        <ignore path="res/layout/abc_action_bar_home.xml" />
+        <ignore path="res/layout/abc_action_bar_title_item.xml" />
+    </issue>
+    <issue id="DuplicateIds">
+        <ignore path="res/layout/abc_activity_chooser_view_include.xml" />
+    </issue>
+    <issue id="IconDensities" severity="ignore" />
+    <issue id="IconDuplicates" severity="ignore" />
+    <issue id="IconDuplicatesConfig">
+        <ignore path="res/drawable-mdpi/abc_list_divider_holo_dark.9.png" />
+        <ignore path="res/drawable-mdpi/abc_list_divider_holo_light.9.png" />
+    </issue>
+    <issue id="InefficientWeight">
+        <ignore path="res/layout/abc_search_view.xml" />
+    </issue>
+    <issue id="Instantiatable" severity="ignore" />
+    <issue id="MissingPrefix" severity="ignore" />
+    <issue id="MissingTranslation" severity="ignore" />
+    <issue id="NestedWeights" severity="ignore" />
+    <issue id="ObsoleteLayoutParam" severity="ignore" />
+    <issue id="Orientation" severity="ignore" />
+    <issue id="Overdraw">
+        <ignore path="res/layout/abc_action_bar_home.xml" />
+    </issue>
+    <issue id="UnusedResources" severity="ignore">
+        <ignore path="res/layout/abc_action_bar_decor.xml" />
+        <ignore path="res/layout/abc_action_bar_decor_overlay.xml" />
+        <ignore path="res/layout/abc_action_bar_tab.xml" />
+    </issue>
+    <issue id="UseCompoundDrawables" severity="ignore" />
+    <issue id="UselessParent" severity="ignore" />
+</lint>
