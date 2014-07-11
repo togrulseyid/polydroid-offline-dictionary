@@ -1,0 +1,86 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- Support library compatibility -->
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="CustomTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/CustomActionBar</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="actionBarTabTextStyle">@style/TabTextStyle</item>
+        <item name="actionBarTabStyle">@style/TabBarStyle</item>
+        
+        <item name="popupMenuStyle">@style/CustomTheme.PopupMenu</item>
+    </style>
+
+    <style name="TabBarStyle" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@color/background_action_bar_tab</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/background_action_bar_tab</item>
+    </style>
+
+    <style name="TabTextStyle" parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/background_action_bar</item>
+        <item name="android:textColorHighlight">@android:color/black</item>
+    </style>
+
+    <style name="CustomActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/background_action_bar</item>
+        <item name="titleTextStyle">@style/CustomTitleTextStyle</item>
+        <item name="actionBarTabTextStyle">@style/TabTextStyle</item>
+        <item name="actionBarTabStyle">@style/TabBarStyle</item>
+    </style>
+
+    <style name="CustomTitleTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="PolyDroid.TextView.Style" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/background_action_bar</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="PolyDroid.Spinner.Style" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">@color/background_action_bar</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:background">@drawable/spinner_selector</item>
+        <item name="android:popupBackground">@null</item>
+        <item name="spinnerMode">dropdown</item>
+    </style>
+
+    <style name="button">
+        <item name="android:background">@android:drawable/btn_default</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmallInverse</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+
+    <style name="Polydroid.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/polydroid</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+</resources>

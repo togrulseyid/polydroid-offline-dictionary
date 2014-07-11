@@ -1,0 +1,144 @@
+package com.togrul.pd;
+
+import java.io.File;
+import java.io.Serializable;
+
+import net.sqlcipher.database.SQLiteDatabase;
+import android.content.Context;
+import android.database.Cursor;
+import android.os.Environment;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/**
+ * @author Togrul Seyidov
+ * @version 1.0.1
+ * */
+
+public class DataBaseHelper implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static final String TABLE_ID = "_id";
+	public static final String TABLE_FROM = "_from";
+	public static final String TABLE_TO = "_to";
+
+	private net.sqlcipher.database.SQLiteDatabase sqLiteDatabase;
+	private static Context context;
+	private static String database;
+
+	private static File sdcard = Environment.getExternalStorageDirectory();
+	private static String dbfile = sdcard.getAbsolutePath() + File.separator + "PolyDroid" + File.separator;
+
+	/**
+	 * Constructor that gets Spinner text and ApplicationContext
+	 */
+	public DataBaseHelper(Context Appcontext, String databasefile) {
+		context = Appcontext;
+		database = databasefile;
+		try {
+			SQLiteDatabase.loadLibs(context);
+			sqLiteDatabase = SQLiteDatabase.openDatabase(dbfile + database,
+					"35bfa7be6ddcop0bdx-+9*2b&^$~@", null,
+					SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public String observe() {
+		BeingWatched observed = new BeingWatched();
+		PolyDroidActivity observing = new PolyDroidActivity();
+		/* Add the observing to the list of observers for observed object. */
+		observed.addObserver(observing);
+		observed.Send();
+		return null;
+	}
+
+	public void close() {
+
+		try {
+			sqLiteDatabase.close();
+		} catch (Exception e) {
+			// //System.out.println(e);
+		}
+	}
+
+	public boolean isTableExists(String TABLE_NAME_FROM_SPINNER_QUEUEALL) {
+		if (TABLE_NAME_FROM_SPINNER_QUEUEALL == null || sqLiteDatabase == null
+				|| !sqLiteDatabase.isOpen()) {
+			return false;
+		}
+		Cursor cursor = sqLiteDatabase
+				.rawQuery(
+						"SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?",
+						new String[] { "table",
+								TABLE_NAME_FROM_SPINNER_QUEUEALL });
+		if (!cursor.moveToFirst()) {
+			return false;
+		}
+		int count = cursor.getInt(0);
+		cursor.close();
+		return count > 0;
+	}
+
+	/*
+	 * Using for ListView (Word List)
+	 */
+	public Cursor queryLike(String str) {
+		Cursor c = sqLiteDatabase.query(str.substring(0, 1), new String[] {
+				"_id", "_from" }, " _from " + " LIKE '" + str + "%'", null,
+				null, null, null);
+		return c;
+	}
+
+	/*
+	 * Using for the TextView (Word)
+	 */
+	public Cursor query(String word, String TABLE_NAME_FROM_SPINNER_QUERY, long id) {
+		String t = word.substring(0, 1);
+		Cursor c = sqLiteDatabase.query(t, // table ,
+				new String[] { TABLE_TO,TABLE_FROM }, // columns *,
+				"_id = ?", // where or selection *,
+				new String[] { id + "" }, // selectionArgs i.e. value to replace ? *,
+				null,// groupBy *,
+				null, // having *,
+				null // "LIMIT 30" /* orderBy
+				);
+		return c;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "databaseHelper";
+	}
+	
+	/**
+	 * * * This field is needed for Android to be able to * create new objects,
+	 * individually or as arrays. * * This also means that you can use use the
+	 * default * constructor to create the object and use another * method to
+	 * hyrdate it as necessary. * * I just find it easier to use the constructor.
+	 * * It makes sense for the way my brain thinks ;-) *
+	 */
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public DataBaseHelper createFromParcel(Parcel in) {
+			return new DataBaseHelper(in);
+		}
+
+		public DataBaseHelper[] newArray(int size) {
+			return new DataBaseHelper[size];
+		}
+	};
+	
+	private Parcel in;
+	public DataBaseHelper(Parcel in) {
+		this.in = in;
+	}
+	
+	public DataBaseHelper() {
+	}
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PolyDroid Offline Lüğət</string>
+    <string name="app_version">v 1.1</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_settings">Settings</string>
+    <string name="search">Axtar</string>
+    <string name="expandable_list_sample_action">salam</string>
+    <string name="quit">Çıx</string>
+    <string name="really_quit">Do You Really Wanna Quit?</string>
+    <string name="yes">Bəli</string>
+    <string name="d_quit">Geriyə və ya Çıx</string>
+    <string name="d_really_quit">Geriyə dön və ya Çıx</string>
+    <string name="d_no">Geriyə</string>
+    <string name="no">Xeyr</string>
+    <string name="evveli">Əvvəlindən</string>
+    <string name="ortasi">Ortasından</string>
+    <string name="sonu">Sonundan</string>
+    <string name="autosearch">Axtarmaq üçün yaz!</string>
+    <string name="contentDescription">Nə</string>
+    <string name="info">Toğrul Seyidov. E-mail: togrul.seyid93@gmail.com</string>
+    <string name="aboutus">\nDeveloper: <b><a href="http://togrulseyid.com/">Toghrul Seyidov</a></b>\nE-mail: info@togrulseyid.com\nThis application developed by getting inspired from <b><a href="http://www.hackathonazerbaijan.org/">HackathonAzerbaijan</a></b></string>
+    <string name="prompt">PolyDroid (Dil Seçin)</string>
+    <string name="herif1">ə</string>
+    <string name="herif2">ç</string>
+    <string name="herif3">ğ</string>
+    <string name="herif4">ı</string>
+    <string name="herif5">ö</string>
+    <string name="herif6">ş</string>
+    <string name="herif7">ü</string>
+    <string name="languages">Dili yükləyir</string>
+    <string name="download">Endir</string>
+    <string name="button">düymə</string>
+    <string name="azen">Azəri - English</string>
+    <string name="enaz">English - Azəri</string>
+    <string name="araz">Ərəb - Azəri</string>
+    <string name="azar">Azəri - Ərəb</string>
+    <string name="download_button">Dillər</string>
+    <string name="download_button_on">Endir</string>
+    <string name="download_button_of">Sil</string>
+    <string name="chose_your_style">Öz mövzunu seç</string>
+    <string name="new_tab">Yeni Səhifə \t  (Tərcüməni yeni səhifədə göstər)</string>
+    <string name="popup">Popup \t  (Tərcüməni hazırki ekranda göstər)</string>
+<!--     <string name="half">Half \t ( underconstruction )</string> -->
+    <string name="text_size">Text Size</string>
+    <string name="text_direction">Text Displaying Options</string>
+    <string name="you_can_easly">You can easly change view of Polydroid. You can choose size, color, opening type of the Words</string>
+    <string name="rgb_color_code">RGB(0,0,0)</string>
+    <string name="message_loading">Yükləyir...</string>
+    <string name="confirm_dialog_delete_title">Sil?</string>
+    <string name="confirm_dialog_delete_body">Bazanı silməyə əminsiniz?</string>
+    <string name="fragment_settings_tab_database_list_niconn">İnternet əlaqəsi yoxdur!</string>
+    <string name="fragment_settings_tab_about_web_site">http://togrulseyid.com/about</string>
+    <string name="nothing_found_in_db">There is no such word in our Database</string>
+    <string name="license">        Copyright [2013] [Polydroid Offline Dictionary]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this application except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</string>
+
+</resources>

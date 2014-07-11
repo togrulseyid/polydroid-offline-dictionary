@@ -1,0 +1,83 @@
+package com.togrul.pd.views;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.webkit.WebView;
+
+import com.togrul.pd.DataBaseHelper;
+import com.togrul.pd.models.TranslateOnTextViewModel;
+import com.togrul.polydroidofflinedictionary.R;
+
+public class WebViewTranslateOnTextView extends Activity {
+
+	private String searchWord;
+	private long id;
+	private String spinnerText;
+	private DataBaseHelper dataBaseHelper;
+	private WebView webView;
+	private String sizeOfText = "font-size:18px;";
+	private String RGB = "";
+	
+	TranslateOnTextViewModel jsonMyObject = null;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.word2);
+
+		Intent intent = getIntent();
+		DataBaseHelper person = (DataBaseHelper) intent.getSerializableExtra("databaseHelper");
+		
+		
+		LoadPreference();
+		try {
+			webView = (WebView) findViewById(R.id.WebView2);
+			Cursor c = dataBaseHelper.query(searchWord, spinnerText, id);
+			c.moveToFirst();
+			String s = c.getString(c.getColumnIndex("_to"));
+
+			s = "<!DOCTYPE HTML><html><head>"
+					+ "<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">"
+					+ "<title>Translate</title>"
+					+ " <style type=\"text/css\">"
+					// +
+					// " @font-face {  font-family: 'myface';  src: url('file:///android_asset/fonts//ARIAL.TTF');	} "
+					+ " body{"
+					+ RGB
+					+ " background-color: #F5F5DC; "
+					+ sizeOfText
+					// + " font-family: 'myface', arial;"
+					+ " margin:30px 30px 0 30px;" + " }</style>" + "</head>"
+					+ " <body><center><font color='black'>"
+					+ c.getString(c.getColumnIndex("_from"))
+					+ "<hr size='2' color='black'></font></center>" + s
+					+ "</body>" + "</html>";
+			webView.loadData(s, "text/html; charset=utf-8", "utf-8");
+		} catch (Exception e) {
+		} finally {
+			try {
+				dataBaseHelper.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
+//	public void setData(View view, long id, DataBaseHelper dataBaseHelper, String spinnerText) {
+//		this.view = view;
+//		this.id = id;
+//		this.dataBaseHelper = dataBaseHelper;
+//		this.spinnerText = spinnerText;
+//	}
+
+	private void LoadPreference() {
+		SharedPreferences sp = getSharedPreferences("styleSharedPreferences", 0);
+		sizeOfText = "font-size:"
+				+ (Integer.valueOf(sp.getString("SeekBar", "6")) + 12) + "px;";
+		RGB = sp.getString("RGB", "");
+		// Log.d("RGB",RGB);
+	}
+
+}
